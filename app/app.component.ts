@@ -1,37 +1,44 @@
 import { Component } from '@angular/core';
+import { Item } from './item';
 
+const ITEMS: Item[] = [
+  { id: 11, name: 'Mr. Nice' },
+  { id: 12, name: 'Narco' },
+  { id: 13, name: 'Bombasto' },
+  { id: 14, name: 'Celeritas' },
+  { id: 15, name: 'Magneta' },
+  { id: 16, name: 'RubberMan' },
+  { id: 17, name: 'Dynama' },
+  { id: 18, name: 'Dr IQ' },
+  { id: 19, name: 'Magma' },
+  { id: 20, name: 'Tornado' }
+];
 
 @Component({
   selector: 'my-app',
   template: `
   <h1>{{title}}</h1>
-  <div *ngIf="selectedHero">
-	  <h2>{{selectedHero.name}} details!</h2>
-	  <div><label>id: </label>{{selectedHero.id}}</div>
-	  <div>
-	  <label>name: </label>
-	  <input [(ngModel)]="selectedHero.name" placeholder="name">
-	  </div>
-  </div>
+ 
   <h2> My Heros</h2>
-  <ul class="heroes">
-	  <li *ngFor="let hero of heroes" (click)="onSelect(hero)" [class.selected]="hero === selectedHero">
-	  	<span class="badge">{{hero.id}}</span>{{hero.name}}
+  <ul class="items">
+	  <li *ngFor="let item of items" (click)="onSelect(item)" [class.selected]="item === selectedItem">
+	  	<span class="badge">{{item.id}}</span>{{item.name}}
 	  </li>
   </ul>
+  <item-detail [item]="selectedItem"></item-detail>
   `,
   styles: [`
   .selected {
     background-color: #CFD8DC !important;
     color: white;
   }
-  .heroes {
+  .items {
     margin: 0 0 2em 0;
     list-style-type: none;
     padding: 0;
     width: 15em;
   }
-  .heroes li {
+  .items li {
     cursor: pointer;
     position: relative;
     left: 0;
@@ -41,20 +48,20 @@ import { Component } from '@angular/core';
     height: 1.6em;
     border-radius: 4px;
   }
-  .heroes li.selected:hover {
+  .items li.selected:hover {
     background-color: #BBD8DC !important;
     color: white;
   }
-  .heroes li:hover {
+  .items li:hover {
     color: #607D8B;
     background-color: #DDD;
     left: .1em;
   }
-  .heroes .text {
+  .items .text {
     position: relative;
     top: -3px;
   }
-  .heroes .badge {
+  .items .badge {
     display: inline-block;
     font-size: small;
     color: white;
@@ -73,28 +80,12 @@ import { Component } from '@angular/core';
 
 export class AppComponent { 
  title ='Tour of Heros';
- selectedHero:Hero;
- heroes = HEROES; 
+ items = ITEMS; 
+ selectedItem:Item;
 
- onSelect(hero: Hero):void{
- 	this.selectedHero = hero;
+ onSelect(item: Item):void{
+ 	this.selectedItem = item;
+ 	console.log(this.selectedItem);
  }
 }
 
-export class Hero{
-	id: number;
-	name: string;
-}
-
-const HEROES: Hero[] = [
-  { id: 11, name: 'Mr. Nice' },
-  { id: 12, name: 'Narco' },
-  { id: 13, name: 'Bombasto' },
-  { id: 14, name: 'Celeritas' },
-  { id: 15, name: 'Magneta' },
-  { id: 16, name: 'RubberMan' },
-  { id: 17, name: 'Dynama' },
-  { id: 18, name: 'Dr IQ' },
-  { id: 19, name: 'Magma' },
-  { id: 20, name: 'Tornado' }
-];

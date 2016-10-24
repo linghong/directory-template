@@ -9,28 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var platform_browser_1 = require('@angular/platform-browser');
-var forms_1 = require('@angular/forms');
-var app_component_1 = require('./app.component');
-var item_detail_component_1 = require('./item-detail.component');
-var AppModule = (function () {
-    function AppModule() {
+var item_1 = require('./item');
+var ItemDetailComponent = (function () {
+    function ItemDetailComponent() {
     }
-    AppModule = __decorate([
-        core_1.NgModule({
-            imports: [
-                platform_browser_1.BrowserModule,
-                forms_1.FormsModule
-            ],
-            declarations: [
-                app_component_1.AppComponent,
-                item_detail_component_1.ItemDetailComponent
-            ],
-            bootstrap: [app_component_1.AppComponent]
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', item_1.Item)
+    ], ItemDetailComponent.prototype, "item", void 0);
+    ItemDetailComponent = __decorate([
+        core_1.Component({
+            selector: 'item-detail',
+            template: "\n\t <div *ngIf=\"item\">\n\t  <h2>{{item.name}} details!</h2>\n\t  <div><label>id: </label>{{item.id}}</div>\n\t  <div>\n\t  <label>name: </label>\n\t  <input [(ngModel)]=\"item.name\" placeholder=\"name\">\n\t  </div>\n  </div>\n  "
         }), 
         __metadata('design:paramtypes', [])
-    ], AppModule);
-    return AppModule;
+    ], ItemDetailComponent);
+    return ItemDetailComponent;
 }());
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+exports.ItemDetailComponent = ItemDetailComponent;
+//# sourceMappingURL=item-detail.component.js.map
