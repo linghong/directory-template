@@ -7,7 +7,8 @@ import {ItemsComponent} from './items.component'
   selector: 'my-app',
   template: `
   <h1>{{title}}</h1>
- <item-list><item-list>
+  <a routerLink="/items">Heros</a>
+  <router-outlet></router-outlet> 
   `
 })
 
